@@ -21,7 +21,7 @@ jobs:
         run: pip install tabulate
 
       - name: Run script
-        run: python /update_summary.py
+        run: python update_summary.py
 
       - name: Commit & Push
         run: |
