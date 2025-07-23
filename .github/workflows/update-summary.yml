@@ -1,0 +1,32 @@
+name: Update Summary
+
+on:
+  schedule:
+    - cron: '0 15 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: pip install tabulate
+
+      - name: Run summary updater
+        run: python .github/scripts/update_summary.py
+
+      - name: Commit & Push
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'actions@github.com'
+          git add summary/progress.md
+          git commit -m '🔄 자동 요약 업데이트' || echo "No changes"
+          git push
