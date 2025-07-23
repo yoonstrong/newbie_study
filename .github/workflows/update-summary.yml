@@ -20,8 +20,8 @@ jobs:
       - name: Install dependencies
         run: pip install tabulate
 
-      - name: Run summary updater
-        run: python .github/scripts/update_summary.py
+      - name: Run script
+        run: python /update_summary.py
 
       - name: Commit & Push
         run: |
