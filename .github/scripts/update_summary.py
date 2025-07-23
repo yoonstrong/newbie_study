@@ -2,12 +2,12 @@ import os
 from collections import defaultdict
 from tabulate import tabulate
 
-folders = ["algorithm", "python", "didnt-know", "weekly-challenge"]
+folders = ["algorithm", "python", "didnt_know", "weekly_challenge"]
 member_stats = defaultdict(lambda: defaultdict(int))
 
 def get_members_in_folder(folder):
     path = os.path.join(".", folder)
-    if folder == "weekly-challenge":
+    if folder == "weekly_challenge":
         for week in os.listdir(path):
             week_path = os.path.join(path, week)
             if os.path.isdir(week_path):
@@ -31,12 +31,12 @@ for member, counts in sorted(member_stats.items()):
         member,
         counts.get("algorithm", 0),
         counts.get("python", 0),
-        counts.get("didnt-know", 0),
-        counts.get("weekly-challenge", 0),
+        counts.get("didnt_know", 0),
+        counts.get("weekly_challenge", 0),
         total
     ])
 
-header = ["이름", "algorithm", "python", "didnt-know", "weekly-challenge", "총합"]
+header = ["이름", "algorithm", "python", "didnt_know", "weekly_challenge", "총합"]
 
 os.makedirs("summary", exist_ok=True)
 with open("summary/progress.md", "w", encoding="utf-8") as f:
