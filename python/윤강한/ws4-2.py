@@ -1,37 +1,17 @@
-list_of_book = [
-    '장화홍련전',
-    '가락국 신화',
-    '온달 설화',
-    '금오신화',
-    '이생규장전',
-    '만복자서포기',
-    '수성지',
-    '백호집',
-    '원생몽유록',
-    '홍길동전',
-    '장생전',
-    '도문대작',
-    '옥루몽',
-    '옥련몽',
-]
+import requests
+from pprint import pprint as print
 
-rental_list = [
-    '장생전',
-    '원생몽유록',
-    '이생규장전',
-    '장화홍련전',
-    '수성지',
-    '난중일기',
-    '백호집',
-    '홍길동전',
-    '만복자서포기',
-]
+dummy_data = []
 
-problem = 0
-for book in rental_list:
-    if book not in list_of_book:
-        print(f"{book} 은/는 보유하고 있지 않습니다.")
-        problem += 1
-        break
-    if problem == 0:
-        print("모든 도서가 대여 가능한 상태입니다.")
+for i in range(1, 11):
+    API_URL = f"https://jsonplaceholder.typicode.com/users/{i}"
+    response = requests.get(API_URL)
+    parsed_data = response.json()
+    company = parsed_data['company']['name']
+    name = parsed_data['name']
+    lat = float(parsed_data['address']['geo']['lat'])
+    lng = float(parsed_data['address']['geo']['lng'])
+    if lat < 80 and lng > -80:
+            user_info = {'company' : company, 'lat' : lat, 'lng' : lng, 'name' : name}
+            dummy_data.append(user_info)
+print(dummy_data)
