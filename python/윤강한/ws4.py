@@ -120,3 +120,30 @@ print(parsed_data['username'])
 print(parsed_data['company']['name'])
 print(parsed_data['name'])
 
+
+    '옥련몽',
+]
+
+rental_list = [
+    '장생전',
+    '위대한 개츠비',
+    '원생몽유록',
+    '이생규장전',
+    '데미안',
+    '장화홍련전',
+    '수성지',
+    '백호집',
+    '난중일기',
+    '홍길동전',
+    '만복자서포기',
+
+]
+
+missing_book = [book for book in rental_list if book not in list_of_book] # list comprehension을 사용 
+
+if missing_book:    # 리스트가 비어있다고 해서 객체가 False인 것은 아니므로 is False를 사용하지 않는것을 권장
+    for book in missing_book:
+        print(f"{book} 을/를 보충하여야 합니다.")
+else:
+    print("모든 도서가 대여 가능한 상태입니다.")
+    
